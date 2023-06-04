@@ -1,0 +1,51 @@
+{%extends './body.html'%}
+
+{%block title%}Casita{%endblock%}
+{%block container%} 
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+    </div>
+    <h1> Tiendita "your Casita"</h1>
+    {%with messages = get_flashed_messages()%}
+    {%if messages %}
+    <br/>
+    {% for message in messages%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong style='font-size: 14px;'> {{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+<hr/>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2>{{ data.titulo }}</h2>
+    </div>
+    {%if current_user.tipousuario.id ==1%}
+    {% if data.maquillaje_vendido|length > 0 %}
+
+    {%else%}
+    
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h2> A&uacute;n no existen productos vendidos</h2>
+      </div>
+    {%endif%}
+
+    {%else%}
+    {% if data.compras|length > 0 %}
+
+    {%else%}
+    
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h2> A&uacute;n no has comprado... </h2>
+      </div>
+    {%endif%}
+    {%endif%}
+</div>
+
+ 
+ {%endblock%}
